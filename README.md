@@ -25,8 +25,8 @@ SaucerHedge is an advanced DeFi automation protocol that protects liquidity prov
 - [Installation](#installation)
 - [Deployment](#deployment)
 - [Testing](#testing)
-- [Security](#security)
 - [Contributing](#contributing)
+- [Acknowledgments](#acknowledgments)
 - [License](#license)
 
 ## 🔍 Overview

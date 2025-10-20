@@ -266,13 +266,8 @@ npm run deploy:mainnet
 
 ```bash
 # Run all tests
-forge test
+nox hardhat test
 
-# Run with coverage
-forge run test:coverage
-
-# Run specific test file
-forge test --mt test/SaucerHedger.test.ts
 ```
 
 ## 🤝 Contributing

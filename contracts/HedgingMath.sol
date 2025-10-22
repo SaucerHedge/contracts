@@ -1,16 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import "./UD60x18Lib.sol";
+
 /**
  * @title HedgingMath
  * @notice Mathematical calculations for hedging impermanent loss
  * @dev Based on concentrated liquidity math from SaucerSwap V2
- 
  */
-contract HedgingMath {
-    // Custom UD60x18 type for fixed-point math
-    type UD60x18 is uint256;
-
+contract HedgingMath is UD60x18Lib {
     // Custom errors for better gas efficiency
     error InvalidPriceRange();
     error PriceOutOfRange();
@@ -284,7 +282,7 @@ contract HedgingMath {
 
     /**
      * @notice Find equal PnL values for hedging strategy
-     
+     * @dev Made internal so it can be called by SaucerHedger
      */
     function findEqualPnLValues(
         uint256 p,
@@ -292,7 +290,7 @@ contract HedgingMath {
         uint256 b,
         uint256 P1,
         uint256 shortPrice
-    ) external pure returns (uint256 lpValue, uint256 shortValue) {
+    ) internal pure returns (uint256 lpValue, uint256 shortValue) {
         // Input validation
         if (a >= b) revert InvalidPriceRange();
         if (p < a || p > b) revert PriceOutOfRange();
@@ -402,42 +400,6 @@ contract HedgingMath {
     }
 
     // ===========================
-    // UD60x18 Helper Functions
-    // ===========================
-
-    function ud(uint256 x) private pure returns (UD60x18) {
-        return UD60x18.wrap(x);
-    }
-
-    function unwrap(UD60x18 x) private pure returns (uint256) {
-        return UD60x18.unwrap(x);
-    }
-
-    function ud_add(UD60x18 x, UD60x18 y) private pure returns (UD60x18) {
-        return UD60x18.wrap(UD60x18.unwrap(x) + UD60x18.unwrap(y));
-    }
-
-    function ud_sub(UD60x18 x, UD60x18 y) private pure returns (UD60x18) {
-        if (unwrap(x) < unwrap(y)) revert InvalidInput();
-        return UD60x18.wrap(UD60x18.unwrap(x) - UD60x18.unwrap(y));
-    }
-
-    function ud_mul(UD60x18 x, UD60x18 y) private pure returns (UD60x18) {
-        return UD60x18.wrap((UD60x18.unwrap(x) * UD60x18.unwrap(y)) / 1e18);
-    }
-
-    function ud_div(UD60x18 x, UD60x18 y) private pure returns (UD60x18) {
-        if (unwrap(y) == 0) revert DivisionByZero();
-        return UD60x18.wrap((UD60x18.unwrap(x) * 1e18) / UD60x18.unwrap(y));
-    }
-
-    function ud_sqrt(UD60x18 x) private pure returns (UD60x18) {
-        uint256 xUint = UD60x18.unwrap(x);
-        uint256 result = sqrt(xUint * 1e18);
-        return UD60x18.wrap(result);
-    }
-
-    // ===========================
     // Math Helper Functions
     // ===========================
 
@@ -449,7 +411,7 @@ contract HedgingMath {
         uint256 a,
         uint256 b,
         uint256 denominator
-    ) private pure returns (uint256 result) {
+    ) internal pure returns (uint256 result) {
         uint256 prod0; // Least significant 256 bits of the product
         uint256 prod1; // Most significant 256 bits of the product
         assembly {
@@ -502,21 +464,5 @@ contract HedgingMath {
 
         result = prod0 * inv;
         return result;
-    }
-
-    /**
-     * @notice Babylonian square root method
-     */
-    function sqrt(uint256 y) private pure returns (uint256 z) {
-        if (y > 3) {
-            z = y;
-            uint256 x = y / 2 + 1;
-            while (x < z) {
-                z = x;
-                x = (y / x + x) / 2;
-            }
-        } else if (y != 0) {
-            z = 1;
-        }
     }
 }

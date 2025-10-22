@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 /**
  * @title Corrected SaucerSwap Interfaces
  * @notice Based on actual SaucerSwap V2 implementation (Uniswap V3 fork)
- *
+ * @dev References: https://github.com/saucerswaplabs/saucerswaplabs-core
  */
 
 /**
@@ -346,20 +346,17 @@ library HederaAddresses {
 
     // SaucerSwap V2 Contracts - Hedera Testnet
     // SaucerSwap V2 Factory (0.0.1197038)
-    address public constant SAUCERSWAP_V2_FACTORY =
-        0x00000000000000000000000000000000001243eE;
+     address public constant SAUCERSWAP_V2_FACTORY = 0x00000000000000000000000000000000001243eE;
+
 
     // SaucerSwap V2 Router (0.0.1414040)
-    address public constant SAUCERSWAP_V2_ROUTER =
-        0x0000000000000000000000000000000000159198;
+    address public constant SAUCERSWAP_V2_ROUTER = 0x0000000000000000000000000000000000159198;
 
     // SaucerSwap V2 NFT Position Manager (0.0.1308184)
-    address public constant SAUCERSWAP_V2_NFT_MANAGER =
-        0x000000000000000000000000000000000013f418;
+    address public constant SAUCERSWAP_V2_NFT_MANAGER = 0x000000000000000000000000000000000013f418;
 
     // SaucerSwap V2 Quoter (0.0.1390002)
-    address public constant SAUCERSWAP_V2_QUOTER =
-        0x0000000000000000000000000000000000153532;
+    address public constant SAUCERSWAP_V2_QUOTER = 0x0000000000000000000000000000000000153532;
 
     // Fee tiers (in hundredths of a bip)
     uint24 public constant FEE_LOW = 500; // 0.05%

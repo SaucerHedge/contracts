@@ -290,7 +290,7 @@ contract HedgingMath is UD60x18Lib {
         uint256 b,
         uint256 P1,
         uint256 shortPrice
-    ) internal pure returns (uint256 lpValue, uint256 shortValue) {
+    ) public pure returns (uint256 lpValue, uint256 shortValue) {
         // Input validation
         if (a >= b) revert InvalidPriceRange();
         if (p < a || p > b) revert PriceOutOfRange();
@@ -411,7 +411,7 @@ contract HedgingMath is UD60x18Lib {
         uint256 a,
         uint256 b,
         uint256 denominator
-    ) internal pure returns (uint256 result) {
+    ) public pure returns (uint256 result) {
         uint256 prod0; // Least significant 256 bits of the product
         uint256 prod1; // Most significant 256 bits of the product
         assembly {

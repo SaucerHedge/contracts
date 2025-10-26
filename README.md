@@ -188,6 +188,23 @@ The protocol uses concentrated liquidity math from Uniswap V3:
     └────────────────────────────────────────────────────┘
 ```
 
+## 📍 Deployed Contracts (Hedera Testnet)
+
+| Contract | Address | Hashscan |
+|----------|---------|-----------|
+| **SaucerHedger** | `0xec13c047b446f63e4bbdd9dbe8fc129281afa1e9` | [View](https://hashscan.io/testnet/contract/0.0.7103188 ) |
+| **HedgingMath** | `0x7eb0c489f8fc32031baccd1a50727050037e00d0` | [View](https://hashscan.io/testnet/contract/0.0.7102365) |
+| **Leverage ** | `0x13bddb493a8153e6da262e9c639fded89a02ee9a` | [View](https://hashscan.io/testnet/contract/0.0.7102800) |
+| **Provider ** | `0x85301fe77ba6e434257a61e5ce17d19ecf1f0e28` | [View](https://hashscan.io/testnet/contract/0.0.7102984) |
+| **Factory ** | `0xaf1a2e0f16d8aee9329285ad2f22c88cdf66763d` | [View](https://hashscan.io/testnet/contract/0.0.7103227) |
+| **Swapper Contract** | `0x5524EEbb145e568E3D8c566F59c49fE5e5c5f82c` | [View](https://hashscan.io/testnet/contract/0.0.7102919) |
+| **SaucerHedgeVaultFactory** | `0x8c95eB50081Abb10037Df179aDeb694a91Ddd542` | [View](https://hashscan.io/testnet/contract/0.0.7131832) |
+| **VaultManager** | `0x5db8d6e05156e532a55e6e98e4bfc33df9cd8586` | [View](https://hashscan.io/testnet/contract/0.0.7132045) |
+| **SaucerHedge HBAR Vault(shHBAR)** | ` 0x243ca23b895308bd846209e80cccff29d3dddf3b` | [View](https://hashscan.io/testnet/contract/0.0.7134539) |
+| **SaucerHedge USDC Vault(shUSDC)** | `0xa7303803ddea114fc4f53b1070e09956b3251fe3` | [View](https://hashscan.io/testnet/contract/0.0.7134500) |
+
+---
+
 ## 💻 Installation
 
 ### Prerequisites
@@ -266,7 +283,7 @@ npm run deploy:mainnet
 
 ```bash
 # Run all tests
-nox hardhat test
+npx hardhat test
 
 ```
 
